@@ -1,0 +1,38 @@
+{
+  "name": "vite-plugin-nextcloud",
+  "version": "0.1.0",
+  "description": "",
+  "keywords": [],
+  "author": "Vinicius Reis <luiz.vinicius73@gmail.com>",
+  "license": "AGPL-3.0-or-later",
+  "main": "dist/index.esm.js",
+  "type": "module",
+  "scripts": {
+    "build": "rollup --config rollup.config.mjs",
+    "prepare": "yarn build",
+    "lint": "NODE_ENV=production eslint . --fix",
+    "format": "prettier . -w -u",
+    "test": "echo '!! nothing todo yet'",
+    "lint:ci": "NODE_ENV=production eslint .",
+    "format:check": "prettier . -c -u"
+  },
+  "peerDependencies": {
+    "vite": ">2.0.0-0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@types/node": "^18.7.6",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^22.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.2.4",
+    "eslint-plugin-promise": "^6.0.0",
+    "prettier": "^2.7.1",
+    "rollup": "^2.78.0",
+    "rollup-plugin-exclude-dependencies-from-bundle": "^1.1.22",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.8"
+  }
+}
