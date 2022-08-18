@@ -1,19 +1,16 @@
 import typescript from '@rollup/plugin-typescript';
 import externals from 'rollup-plugin-exclude-dependencies-from-bundle';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+const plugins = [nodeResolve(), externals(), typescript()];
 
 export default [
   {
     input: 'src/index.ts',
-    plugins: [
-      externals(),
-      typescript({
-        tsconfig: './tsconfig.json',
-        compilerOptions: { target: 'es5' },
-      }),
-    ],
+    plugins,
     output: [
       {
-        file: 'dist/index.cjs.js',
+        file: 'dist/index.cjs',
         format: 'cjs',
         sourcemap: true,
       },
@@ -21,10 +18,10 @@ export default [
   },
   {
     input: 'src/index.ts',
-    plugins: [externals(), typescript()],
+    plugins,
     output: [
       {
-        file: 'dist/index.esm.js',
+        file: 'dist/index.mjs',
         format: 'esm',
         sourcemap: true,
       },
