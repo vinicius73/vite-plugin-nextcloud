@@ -1,0 +1,49 @@
+name: Publish
+
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🔒​ Check actor permission level
+        uses: skjnldsv/check-actor-permission@v2
+        with:
+          require: admin
+
+      - name: 📥​ Checkout
+        uses: actions/checkout@v3
+
+      - name: 🔧​ Setup Node (NPM Registry)
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📦 Install dependencies & build
+        run: |
+          npm ci
+          npm run build
+
+      - name: 📣 Publish package on NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: 🔧​ Setup Github Registry
+        uses: actions/setup-node@v3
+        with:
+          registry-url: 'https://npm.pkg.github.com'
+
+      - name: 💩 Change package name
+        run: |
+          node -e "let pkg=require('./package.json'); pkg.name='@vinicius73/' + pkg.name; require('fs').writeFileSync('package.json', JSON.stringify(pkg, null, 2));"
+
+      - name: 📣 Publish package on GPR
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
