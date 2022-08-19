@@ -1,0 +1,26 @@
+{
+	"name": "vinicius73/timer_app",
+	"type": "project",
+	"license": "AGPL",
+	"authors": [
+		{
+			"name": "Vinicius Reis",
+			"email": "luiz.vinicius73@gmail.com"
+		}
+	],
+	"config": {
+		"platform": {
+			"php": "7.4"
+		}
+	},
+	"require": {
+		"ext-json": "*"
+	},
+	"require-dev": {},
+	"autoload": {
+		"psr-4": {
+			"OCA\\TimerApp\\": "lib/"
+		}
+	},
+	"scripts": {}
+}
