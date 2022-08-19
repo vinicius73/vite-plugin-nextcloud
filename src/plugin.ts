@@ -1,11 +1,11 @@
 import type { BuildOptions, Manifest, Plugin, ResolvedConfig } from 'vite';
 import type { PluginConfig } from './config';
 import { relative } from 'node:path';
-import { readFile, writeFile } from 'node:fs/promises';
+import { readFile } from 'node:fs/promises';
 import { createLogger } from 'vite';
 import { getManifestPath, getManifestTargetPath } from './config';
 import { buildEntries } from './manifest';
-import { buildVitePHPClass } from './template';
+import { buildVitePHPClass, writeFile } from './template';
 
 const logger = createLogger('info', { prefix: 'nextcloud' });
 
